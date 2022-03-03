@@ -16,7 +16,6 @@ class Player:
                                ["normal", 5, 7], ["aggressive", 5, 3]]
 
     # determines the behaviour of a PC player
-
     def makeDecision(self, number_of_rolls):
         behaviour = self.behaviourTypes[self.playerType - 1]
 
