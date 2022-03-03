@@ -1,10 +1,9 @@
-import game
+import menu
 
 
 def main():
-    new_game = game.Game()
-    new_game.setupGame()
-    new_game.runGame()
+    new_menu = menu.Menu()
+    new_menu.menuloop()
 
 
 if __name__ == "__main__":
