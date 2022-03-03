@@ -94,8 +94,7 @@ class Game:
         print("")
 
     # method initiates a new game
-
-    def setupGame(self):
+    def showRules(self):
         self.output("Welcome to the game of PIG!")
         print("")
         self.output("The rules are simple,")
@@ -116,11 +115,7 @@ class Game:
                     "points are lost.")
         self.output("")
 
-        self.chooseRules()
-        self.choosePlayers()
-
     # method to show the current score of all players
-
     def showScore(self):
         for i in range(0, len(self.players)):
             self.output(self.players[i].name + " has " +
@@ -128,7 +123,6 @@ class Game:
         print("")
 
     # method to handle the actions of a player
-
     def playerAction(self, player):
         temp_score = 0
         action = ""
@@ -159,18 +153,21 @@ class Game:
                 result = self.dice.rollDice()
                 temp_score += sum(result)
 
-                self.output("You roll " +
-                            str(result[0]) +
-                            " and " +
-                            str(result[1]) +
-                            " (" +
-                            str(temp_score) +
-                            " points this turn)")
+                if len(result) == 2:
+                    self.output("You roll " +
+                                str(result[0]) +
+                                " and " +
+                                str(result[1]) +
+                                " (" +
+                                str(temp_score) +
+                                " points this turn)")
+                elif len(result) == 1:
+                    self.output("You roll " + str(result[0]))
 
                 if 1 in result:
                     temp_score = 0
                     action = "n"
-                    self.output("you role a 1!")
+                    self.output("You roll a 1!")
 
                 # more than one die is thrown
                 if len(result) > 0:
@@ -211,8 +208,12 @@ class Game:
                     " points, with new total " +
                     str(player.score))
 
-    # method runs a game
+    # implements changing the name of an existing player
+    def changeName(self, new_name, player_ID):
+        player = self.players[player_ID - 1]
+        player.name = new_name
 
+    # method runs a game
     def runGame(self):
         self.output("Lets play a game!")
 
