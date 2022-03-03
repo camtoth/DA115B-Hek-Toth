@@ -9,7 +9,7 @@ class Game:
     # initialize
     # players: list of players in the game
     # turn: current turn number
-    # active: boolean if game is active of not
+    # active: boolean if game is active or not
     def __init__(self, players=[], maxPlayers=2, gameSpeed=1, maxScore=100):
         self.players = players
         self.maxPlayers = maxPlayers
@@ -43,7 +43,7 @@ class Game:
             except BaseException:
                 pass
 
-        self.output("Great, let's play a game with" + str(self.rules) + "!")
+        self.output("Great, let's play a game with " + str(self.rules) + "!")
 
     def choosePlayers(self):
         choice = -1
@@ -102,17 +102,17 @@ class Game:
         self.output("each player takes turns throwing 1 or 2 dice.")
         self.output("A player can roll an unlimited number of times" +
                     "in one turn.")
-        self.output("When ending a turn all roll results are" +
+        self.output("When ending a turn all roll results are " +
                     "added to the total score.")
         self.output("The first player reaching " +
                     str(self.maxScore) + " wins.")
         self.output("Some special rules:")
-        self.output("- When rolling a double, the player" +
+        self.output("- When rolling a double, the player " +
                     "is forced to roll again.")
         self.output(
-            "- When rolling a 1, the player's points of that turn" +
+            "- When rolling a 1, the player's points of that turn " +
             "are lost.")
-        self.output("- When rolling double 1, all of the player's" +
+        self.output("- When rolling double 1, all of the player's " +
                     "points are lost.")
         self.output("")
 
