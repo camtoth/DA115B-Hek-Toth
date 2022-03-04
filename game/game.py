@@ -15,6 +15,7 @@ class Game:
         self.maxPlayers = maxPlayers
         self.gameSpeed = gameSpeed
         self.maxScore = maxScore
+        self.dice = dice.Dice()
 
         self.active = True
         self.turn = 0
@@ -25,7 +26,7 @@ class Game:
 
     def chooseRules(self):
         self.output("CHOOSE RULES")
-        self.output("1: 1 die", 0)
+        self.output("1: 1 dice", 0)
         self.output("2: 2 dice", 0)
 
         choice = 0
@@ -33,17 +34,15 @@ class Game:
             try:
                 choice = int(input("Your choice:"))
                 if choice == 1:
-                    self.rules = "1 die"
                     self.dice = dice.Dice()
                 elif choice == 2:
-                    self.rules = "2 dice"
                     self.dice = dice.Dice(2, 6)
                 else:
                     choice = 0
             except BaseException:
                 pass
 
-        self.output("Great, let's play a game with " + str(self.rules) + "!")
+        self.output("Great, let's play a game with " + str(choice) + "dice!")
 
     def choosePlayers(self):
         choice = -1
@@ -170,7 +169,7 @@ class Game:
                     self.output("You roll a 1!")
 
                 # more than one die is thrown
-                if len(result) > 0:
+                if len(result) > 1:
                     similar = True
                     for i in range(1, len(result)):
                         if result[i] != result[i - 1]:
@@ -201,6 +200,7 @@ class Game:
 
         # add new results to total score
         player.score += temp_score
+        player.totalRolls += number_of_rolls
 
         self.output(player.name + "'s turn ends")
         self.output("gained " +

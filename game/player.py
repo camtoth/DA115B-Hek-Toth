@@ -6,7 +6,7 @@ class Player:
     # initialize
     # name: name of player
     # playerType: type of player (person or PC)
-    def __init__(self, name, playerType=0):
+    def __init__(self, name="", playerType=0):
         self.name = name
         self.playerType = playerType
 
