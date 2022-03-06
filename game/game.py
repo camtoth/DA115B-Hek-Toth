@@ -1,4 +1,5 @@
 import random
+from selectors import EpollSelector
 import time
 import dice
 import player as pl
@@ -20,10 +21,12 @@ class Game:
         self.active = True
         self.turn = 0
 
+    # prints text to the screen using the duration as a delay
     def output(self, text, duration=1):
         time.sleep(duration / self.gameSpeed)
         print(text)
 
+    # choose between 1 or 2 dice game
     def chooseRules(self):
         self.output("CHOOSE RULES")
         self.output("1: 1 dice", 0)
@@ -42,8 +45,9 @@ class Game:
             except BaseException:
                 pass
 
-        self.output("Great, let's play a game with " + str(choice) + "dice!")
+        self.output("Great, let's play a game with " + str(choice) + " dice!")
 
+    # choose player, human or pc and pick a name
     def choosePlayers(self):
         choice = -1
         while (len(self.players) < self.maxPlayers):
@@ -92,7 +96,7 @@ class Game:
                     " players in the game")
         print("")
 
-    # method initiates a new game
+    # shows the rules of the game
     def showRules(self):
         self.output("Welcome to the game of PIG!")
         print("")
@@ -134,7 +138,7 @@ class Game:
             else:
                 # human player
                 if player.playerType == 0:
-                    action = input("Throw dice? (y/n)")
+                    action = input("Throw dice? ('y'/'n') (or 'q' to quit)")
 
                 # pc player
                 else:
@@ -146,9 +150,27 @@ class Game:
                     else:
                         self.output("computer ends turn", 3)
 
-            # dice is rolled
-            if action == "y":
+            # player tries to quit
+            if action == "q":
+                make_choice = True
+
+                while make_choice:
+                    quit_choice = input("Are you sure? ('y'/'n')")
+
+                    # player quits
+                    if quit_choice == "y":
+                        action = "n"
+                        player.score = -1
+                        temp_score = 0   
+                        make_choice = False
+                    # player cancels quit
+                    elif quit_choice == "n":
+                        make_choice = False
+            # dice is rolled        
+            elif action == "y":
                 player.totalRolls += 1
+                number_of_rolls += 1
+
                 result = self.dice.rollDice()
                 temp_score += sum(result)
 
@@ -187,13 +209,15 @@ class Game:
                         else:
                             action = "y2"
                             self.output("same numbers!")
+            # player end game cheating
             elif action == "end":
                 action = "n"
                 temp_score = self.maxScore
                 self.output("player magically rolls " + str(self.maxScore))
 
-            number_of_rolls += 1
+            
 
+            # if not forced to roll again and player reachec max number of points
             if (action != "y2") and (
                     (player.score + temp_score) >= self.maxScore):
                 action == "n"
@@ -202,11 +226,10 @@ class Game:
         player.score += temp_score
         player.totalRolls += number_of_rolls
 
-        self.output(player.name + "'s turn ends")
-        self.output("gained " +
-                    str(temp_score) +
-                    " points, with new total " +
-                    str(player.score))
+        # show new score when player action ends
+        if player.score != -1:
+            self.output(player.name + "'s turn ends")
+            self.output("gained " + str(temp_score) + " points, with new total " + str(player.score))
 
     # implements changing the name of an existing player
     def changeName(self, new_name, player_ID):
@@ -236,14 +259,25 @@ class Game:
                     + str(player.score) + ")")
                 self.playerAction(player)
 
+                # player reaches maximum score
                 if player.score >= self.maxScore:
-                    print(
-                        self.maxScore,
-                        "reached!",
-                        player.name,
-                        "wins the game!")
+                    self.output(str(self.maxScore)+ " reached! "+player.name+" wins the game!")
                     self.active = False
+                    break
+                # player quits game 
+                elif player.score == -1:
+                    self.output("Player "+player.name+" quits game.")
+                    self.active = False
+
+                    # find other player
+                    i = self.players.index(player)
+                    if i == 1:
+                        i_other = 0
+                    else:
+                        i_other = 1
+
+                    self.output("Player " +self.players[i_other].name+" wins the game!") 
                     break
 
         print("")
-        self.output("the game has ended")
+        self.output("the game has ended\n")
