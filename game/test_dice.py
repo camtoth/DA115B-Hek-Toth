@@ -30,7 +30,7 @@ class Test_01_DiceClass(unittest.TestCase):
         self.dice.numberOfDice = 2
         roll = self.dice.rollDice()
         roll_result = sum(roll)
-        result = 2 <= roll_result <= (self.dice.numberOfSides*2)
+        result = 2 <= roll_result <= (self.dice.numberOfSides * 2)
         self.assertTrue(result)
 
     def test_03_NumberOfDice1(self):

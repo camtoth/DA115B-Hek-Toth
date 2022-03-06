@@ -11,7 +11,13 @@ class Game:
     # players: list of players in the game
     # turn: current turn number
     # active: boolean if game is active or not
-    def __init__(self, leaderboard, players=[], maxPlayers=2, gameSpeed=1, maxScore=20):
+    def __init__(
+            self,
+            leaderboard,
+            players=[],
+            maxPlayers=2,
+            gameSpeed=1,
+            maxScore=20):
         self.players = players
         self.maxPlayers = maxPlayers
         self.gameSpeed = gameSpeed
@@ -162,12 +168,12 @@ class Game:
                     if quit_choice == "y":
                         action = "n"
                         player.score = -1
-                        temp_score = 0   
+                        temp_score = 0
                         make_choice = False
                     # player cancels quit
                     elif quit_choice == "n":
                         make_choice = False
-            # dice is rolled        
+            # dice is rolled
             elif action == "y":
                 player.totalRolls += 1
                 number_of_rolls += 1
@@ -216,9 +222,8 @@ class Game:
                 temp_score = self.maxScore
                 self.output("player magically rolls " + str(self.maxScore))
 
-            
-
-            # if not forced to roll again and player reachec max number of points
+            # if not forced to roll again and player reachec max number of
+            # points
             if (action != "y2") and (
                     (player.score + temp_score) >= self.maxScore):
                 action == "n"
@@ -230,7 +235,10 @@ class Game:
         # show new score when player action ends
         if player.score != -1:
             self.output(player.name + "'s turn ends")
-            self.output("gained " + str(temp_score) + " points, with new total " + str(player.score))
+            self.output("gained " +
+                        str(temp_score) +
+                        " points, with new total " +
+                        str(player.score))
 
     # implements changing the name of an existing player
     def changeName(self, new_name, player_ID):
@@ -262,13 +270,15 @@ class Game:
 
                 # player reaches maximum score
                 if player.score >= self.maxScore:
-                    self.output(str(self.maxScore)+ " reached! "+player.name+" wins the game!")
+                    self.output(str(self.maxScore) + " reached! " +
+                                player.name + " wins the game!")
                     self.active = False
-                    self.leaderboard.updateLeaderboard(player.score, player.name)
+                    self.leaderboard.updateLeaderboard(
+                        player.score, player.name)
                     break
-                # player quits game 
+                # player quits game
                 elif player.score == -1:
-                    self.output("Player "+player.name+" quits game.")
+                    self.output("Player " + player.name + " quits game.")
                     self.active = False
 
                     # find other player
@@ -278,8 +288,12 @@ class Game:
                     else:
                         i_other = 1
 
-                    self.output("Player " + self.players[i_other].name+" wins the game!")
-                    self.leaderboard.updateLeaderboard(self.players[i_other].score, self.players[i_other].name)
+                    self.output(
+                        "Player " +
+                        self.players[i_other].name +
+                        " wins the game!")
+                    self.leaderboard.updateLeaderboard(
+                        self.players[i_other].score, self.players[i_other].name)
                     break
 
         print("")

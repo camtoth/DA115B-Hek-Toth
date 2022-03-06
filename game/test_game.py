@@ -105,7 +105,7 @@ class TestGameClass(unittest.TestCase):
         result = self.game.players[0].score
 
         self.assertEqual(result, 0)
- 
+
     def test_07_PlayerAction2(self):
         # test player input
         initialScore = self.game.players[1].score
@@ -120,7 +120,7 @@ class TestGameClass(unittest.TestCase):
         rolls = newRolls - initialRolls
 
         self.assertGreaterEqual(result, 0)
-        self.assertLessEqual(result, 6*rolls)
+        self.assertLessEqual(result, 6 * rolls)
 
     @mock.patch('builtins.print')
     def test_08_Output(self, mock_print):
@@ -138,7 +138,9 @@ class TestGameClass(unittest.TestCase):
 
         self.game.showScore()
 
-        self.assertEqual(mock_out.getvalue(),"Tanja has 50 points\nKristof has 51 points\n\n")
+        self.assertEqual(
+            mock_out.getvalue(),
+            "Tanja has 50 points\nKristof has 51 points\n\n")
 
 
 if __name__ == "__main__":

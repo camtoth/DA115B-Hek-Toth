@@ -14,7 +14,7 @@ class Menu:
         while(True):
             # print main menu and take input
             print("1 - Show rules\n2 - Start new game\n" +
-                "3 - Show leaderboard\n4 - Help\n5 - Exit")
+                  "3 - Show leaderboard\n4 - Help\n5 - Exit")
             selection = int(input("> "))
             print(selection)
 
@@ -35,7 +35,8 @@ class Menu:
     def submenuloop(self):
         self.new_game.chooseRules()
         self.new_game.choosePlayers()
-        self.new_game.output("1 - Change player name\n2 - Start game\n3 - Quit")
+        self.new_game.output(
+            "1 - Change player name\n2 - Start game\n3 - Quit")
 
         # 1 - Change player name
         try:
@@ -51,7 +52,8 @@ class Menu:
                     print("Enter new name: ")
                     new_name = input()
                     self.new_game.changeName(new_name, player_ID)
-                    self.new_game.output("1 - Change player name\n2 - Start game\n3 - Quit")
+                    self.new_game.output(
+                        "1 - Change player name\n2 - Start game\n3 - Quit")
                     subselection = int(input())
                 except BaseException:
                     pass
