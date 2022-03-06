@@ -1,5 +1,5 @@
 import random
-from selectors import EpollSelector
+#from selectors import EpollSelector
 import time
 import dice
 import player as pl
@@ -11,13 +11,14 @@ class Game:
     # players: list of players in the game
     # turn: current turn number
     # active: boolean if game is active or not
-    def __init__(self, players=[], maxPlayers=2, gameSpeed=1, maxScore=100):
+    def __init__(self, leaderboard, players=[], maxPlayers=2, gameSpeed=1, maxScore=20):
         self.players = players
         self.maxPlayers = maxPlayers
         self.gameSpeed = gameSpeed
         self.maxScore = maxScore
         self.dice = dice.Dice()
 
+        self.leaderboard = leaderboard
         self.active = True
         self.turn = 0
 
@@ -263,6 +264,7 @@ class Game:
                 if player.score >= self.maxScore:
                     self.output(str(self.maxScore)+ " reached! "+player.name+" wins the game!")
                     self.active = False
+                    self.leaderboard.updateLeaderboard(player.score, player.name)
                     break
                 # player quits game 
                 elif player.score == -1:
@@ -276,8 +278,10 @@ class Game:
                     else:
                         i_other = 1
 
-                    self.output("Player " +self.players[i_other].name+" wins the game!") 
+                    self.output("Player " + self.players[i_other].name+" wins the game!")
+                    self.leaderboard.updateLeaderboard(self.players[i_other].score, self.players[i_other].name)
                     break
 
         print("")
         self.output("the game has ended\n")
+        self.leaderboard.saveLeaderboard()

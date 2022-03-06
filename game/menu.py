@@ -1,13 +1,16 @@
-from re import sub
 import game
+import leaderboard as lb
 
 
 class Menu:
 
     def __init__(self):
-        self.new_game = game.Game()
+        self.leaderboard = lb.Leaderboard()
+        self.new_game = game.Game(self.leaderboard)
 
     def menuloop(self):
+        # loads leaderboard from file
+        self.leaderboard.loadLeaderboard()
         while(True):
             # print main menu and take input
             print("1 - Show rules\n2 - Start new game\n" +
@@ -21,7 +24,8 @@ class Menu:
 
                 elif selection == 2:
                     self.submenuloop()
-                    
+                elif selection == 3:
+                    self.leaderboard.printLeaderboard()
                 elif selection == 5:
                     break
 
