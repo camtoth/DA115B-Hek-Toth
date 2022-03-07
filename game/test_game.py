@@ -3,16 +3,21 @@ import io
 import unittest
 from unittest import mock
 import game
-import player
 import dice
+import leaderboard as lb
 
 
 class TestGameClass(unittest.TestCase):
+    '''
+    Unittesting of game class.
+    '''
     def setUp(self):
-        self.game = game.Game()
+        '''Create game class.'''
+        self.leaderboard = lb.Leaderboard()
+        self.game = game.Game(self.leaderboard)
 
     def test_01_DefaultObject(self):
-        # Instantiate an object and check its properties
+        '''Instantiate an object and check its properties.'''
         self.assertIsInstance(self.game, game.Game)
 
         result = self.game.maxPlayers
@@ -24,12 +29,12 @@ class TestGameClass(unittest.TestCase):
         self.assertEqual(result, expected)
 
         result = self.game.maxScore
-        expected = 100
+        expected = 50
         self.assertEqual(result, expected)
 
     @mock.patch('game.input', create=True)
     def test_02_ChooseRules2(self, mocked_input):
-        # test choice of rules 2 dice game
+        '''Test choice of rules 2 dice game.'''
         mocked_input.side_effect = ['2']
         self.game.chooseRules()
 
@@ -39,7 +44,7 @@ class TestGameClass(unittest.TestCase):
 
     @mock.patch('game.input', create=True)
     def test_03_ChooseRules2(self, mocked_input):
-        # test choice of rules 1 dice game
+        '''Test choice of rules 1 dice game.'''
         mocked_input.side_effect = ['1']
         self.game.chooseRules()
 
@@ -49,7 +54,7 @@ class TestGameClass(unittest.TestCase):
 
     @mock.patch('game.input', create=True)
     def test_04_ChoosePlayers(self, mocked_input):
-        # test player selection
+        '''Test player selection.'''
         mocked_input.side_effect = ['1', 'Kalle', '2', '1']
         self.game.choosePlayers()
 
@@ -79,7 +84,7 @@ class TestGameClass(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_05_ChangeName(self):
-        # tests name change functionality
+        '''Tests name change functionality.'''
 
         # test name change player 1
         nameChange = "Jenny"
@@ -97,7 +102,7 @@ class TestGameClass(unittest.TestCase):
 
     @mock.patch('game.input', create=True)
     def test_06_PlayerAction1(self, mocked_input):
-        # test player input
+        '''Test player input.'''
         mocked_input.side_effect = ['n']
 
         self.game.playerAction(self.game.players[0])
@@ -107,7 +112,7 @@ class TestGameClass(unittest.TestCase):
         self.assertEqual(result, 0)
 
     def test_07_PlayerAction2(self):
-        # test player input
+        '''Test player input.'''
         initialScore = self.game.players[1].score
         initialRolls = self.game.players[1].totalRolls
 
@@ -124,13 +129,13 @@ class TestGameClass(unittest.TestCase):
 
     @mock.patch('builtins.print')
     def test_08_Output(self, mock_print):
-        # check if print output corresponds with input
+        '''Check if print output corresponds with input.'''
         self.game.output("hello world")
         mock_print.assert_called_with("hello world")
 
     @mock.patch('sys.stdout', new_callable=io.StringIO)
     def test_09_ShowScore(self, mock_out):
-        # check if correct scores are printed
+        '''Check if correct scores are printed.'''
         self.game.players[0].score = 50
         self.game.players[1].score = 51
         self.game.players[0].name = "Tanja"

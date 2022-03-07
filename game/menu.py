@@ -3,12 +3,23 @@ import leaderboard as lb
 
 
 class Menu:
-
+    '''
+    Class that makes the program menu.
+    '''
     def __init__(self):
+        '''
+        Constructor of menu class.
+        Attributes:
+        leaderboard (leaderboard object): leaderboard of player highscores.
+        new_game (game object): object of new game.
+        '''
         self.leaderboard = lb.Leaderboard()
         self.new_game = game.Game(self.leaderboard)
 
     def menuloop(self):
+        '''
+        Method that runs the program menu.
+        '''
         # loads leaderboard from file
         self.leaderboard.loadLeaderboard()
         while(True):
@@ -33,6 +44,9 @@ class Menu:
                 pass
 
     def submenuloop(self):
+        '''
+        Method that runs an in-game menu to make in-game changes.
+        '''
         self.new_game.chooseRules()
         self.new_game.choosePlayers()
         self.new_game.output(

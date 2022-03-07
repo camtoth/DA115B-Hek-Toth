@@ -2,6 +2,9 @@ import menu
 
 
 def main():
+    '''
+    Main function to start the game.
+    '''
     new_menu = menu.Menu()
     new_menu.menuloop()
 

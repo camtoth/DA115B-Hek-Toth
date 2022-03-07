@@ -1,5 +1,4 @@
 import random
-#from selectors import EpollSelector
 import time
 import dice
 import player as pl
@@ -7,17 +6,27 @@ import player as pl
 
 # game class
 class Game:
+    '''
+    Game class simulating a game of pig
+    '''
     # initialize
     # players: list of players in the game
     # turn: current turn number
     # active: boolean if game is active or not
-    def __init__(
-            self,
-            leaderboard,
-            players=[],
-            maxPlayers=2,
-            gameSpeed=1,
-            maxScore=20):
+    def __init__(self, leaderboard, players=[], maxPlayers=2,
+                 gameSpeed=1, maxScore=50):
+        '''
+        Constructor of game class
+        Attributes:
+        players (player object list): list containing the players in the game
+        maxPlayers (int): maximum number of players (standard = 2).
+        gameSpeed (int): controls the speed of the game (standard = 1).
+        maxScore (int): the points needed to win the game (standard = 50).
+        dice (dic object): object of the dice used in the game.
+        leaderboard (leaderboard object): highscore list of players' scores
+        active (boolean): shows if game is run or halted (standard = True).
+        turn (int): the current turn of a game (standard = 0).
+        '''
         self.players = players
         self.maxPlayers = maxPlayers
         self.gameSpeed = gameSpeed
@@ -28,13 +37,20 @@ class Game:
         self.active = True
         self.turn = 0
 
-    # prints text to the screen using the duration as a delay
     def output(self, text, duration=1):
+        '''
+        Method prints text to the screen using the duration as a delay
+        Parameters:
+        text (str): messages to print.
+        duration (int): time to print in seconds (standard = 1).
+        '''
         time.sleep(duration / self.gameSpeed)
         print(text)
 
-    # choose between 1 or 2 dice game
     def chooseRules(self):
+        '''
+        Method to choose the rules set.
+        '''
         self.output("CHOOSE RULES")
         self.output("1: 1 dice", 0)
         self.output("2: 2 dice", 0)
@@ -54,8 +70,10 @@ class Game:
 
         self.output("Great, let's play a game with " + str(choice) + " dice!")
 
-    # choose player, human or pc and pick a name
     def choosePlayers(self):
+        '''
+        Method to select a player and pick a name.
+        '''
         choice = -1
         while (len(self.players) < self.maxPlayers):
             print("")
@@ -103,8 +121,10 @@ class Game:
                     " players in the game")
         print("")
 
-    # shows the rules of the game
     def showRules(self):
+        '''
+        Method that shows the game rules.
+        '''
         self.output("Welcome to the game of PIG!")
         print("")
         self.output("The rules are simple,")
@@ -125,15 +145,21 @@ class Game:
                     "points are lost.")
         self.output("")
 
-    # method to show the current score of all players
     def showScore(self):
+        '''
+        Method to show the current score of all players.
+        '''
         for i in range(0, len(self.players)):
             self.output(self.players[i].name + " has " +
                         str(self.players[i].score) + " points")
         print("")
 
-    # method to handle the actions of a player
     def playerAction(self, player):
+        '''
+        Method that handles the action of a player in his turn.
+        Parameters:
+        player (player object): the player that makes an action.
+        '''
         temp_score = 0
         action = ""
         number_of_rolls = 0
@@ -240,13 +266,17 @@ class Game:
                         " points, with new total " +
                         str(player.score))
 
-    # implements changing the name of an existing player
     def changeName(self, new_name, player_ID):
+        '''
+        Method implements changing the name of an existing player.
+        '''
         player = self.players[player_ID - 1]
         player.name = new_name
 
-    # method runs a game
     def runGame(self):
+        '''
+        Method runs a game of pig.
+        '''
         self.output("Lets play a game!")
 
         random.shuffle(self.players)
@@ -288,12 +318,10 @@ class Game:
                     else:
                         i_other = 1
 
-                    self.output(
-                        "Player " +
-                        self.players[i_other].name +
-                        " wins the game!")
-                    self.leaderboard.updateLeaderboard(
-                        self.players[i_other].score, self.players[i_other].name)
+                    p2 = self.players[i_other]
+
+                    self.output("Player " + p2.name+"wins the game!")
+                    self.leaderboard.updateLeaderboard(p2.score, p2.name)
                     break
 
         print("")

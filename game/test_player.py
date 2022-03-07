@@ -4,11 +4,15 @@ import player
 
 
 class TestPlayerClass(unittest.TestCase):
+    '''
+    Unittesting of player class.
+    '''
     def setUp(self):
+        '''Define a player class.'''
         self.player = player.Player()
 
     def test_01_DefaultObject(self):
-        # Instantiate an object and check its properties
+        '''Instantiate an object and check its properties.'''
         self.assertIsInstance(self.player, player.Player)
 
         result = self.player.name
@@ -20,18 +24,19 @@ class TestPlayerClass(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_02_PlayerName(self):
-        # test player name
+        '''Test player name.'''
         name = "Kalle"
         self.player.name = name
         self.assertEqual(self.player.name, name)
 
     def test_03_PlayerType(self):
-        # test playertype
+        '''Test playertype.'''
         playerType = "careful"
         self.player.playerType = playerType
         self.assertEqual(self.player.playerType, playerType)
 
     def test_04_BehaviourPC1(self):
+        '''Test pc behaviour.'''
         number_rolls = 1
         number_decision = 1000
 
@@ -61,6 +66,7 @@ class TestPlayerClass(unittest.TestCase):
             self.assertLessEqual(result, highBoundary)
 
     def test_05_BehaviourPC2(self):
+        '''Test pc behaviour.'''
         number_rolls = 2
         number_decision = 1000
 
@@ -90,6 +96,7 @@ class TestPlayerClass(unittest.TestCase):
             self.assertLessEqual(result, highBoundary)
 
     def test_06_BehaviourPC3(self):
+        '''Test pc behaviour.'''
         number_rolls = 3
         number_decision = 1000
 

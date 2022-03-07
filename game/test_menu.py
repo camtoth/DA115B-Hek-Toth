@@ -5,12 +5,15 @@ import game
 
 
 class TestMenuClass(unittest.TestCase):
-
+    '''
+    Unittesting of menu class.
+    '''
     def setUp(self):
+        '''Create menu object.'''
         self.menu = menu.Menu()
 
     def test_01_DefaultObject(self):
-        # Instantiate an object and check its properties
+        '''Instantiate an object and check its properties.'''
         self.assertIsInstance(self.menu, menu.Menu)
         result_game = self.menu.new_game
         result_leaderboard = self.menu.leaderboard

@@ -3,12 +3,16 @@ import unittest
 import dice
 
 
-class Test_01_DiceClass(unittest.TestCase):
+class TestDiceClass(unittest.TestCase):
+    '''
+    Unittesting of the dice class.
+    '''
     def setUp(self):
+        '''Define a dice object.'''
         self.dice = dice.Dice()
 
     def test_01_DefaultObject(self):
-        # Instantiate an object and check its properties
+        '''Instantiate an object and check its properties.'''
         self.assertIsInstance(self.dice, dice.Dice)
 
         result = self.dice.numberOfSides
@@ -20,7 +24,7 @@ class Test_01_DiceClass(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_02_RollResult1Dice(self):
-        # Roll one dice and check value is in bounds
+        '''Roll one dice and check value is in bounds.'''
         roll = self.dice.rollDice()
         roll_result = sum(roll)
         result = 1 <= roll_result <= self.dice.numberOfSides
@@ -34,7 +38,7 @@ class Test_01_DiceClass(unittest.TestCase):
         self.assertTrue(result)
 
     def test_03_NumberOfDice1(self):
-        # check if dice roll has the correct number of dice
+        '''Check if dice roll has the correct number of dice.'''
         self.dice.numberOfDice = 1
         roll = self.dice.rollDice()
         result = len(roll)
@@ -43,7 +47,7 @@ class Test_01_DiceClass(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_04_NumberOfDice2(self):
-        # check if dice roll has the correct number of dice
+        '''Check if dice roll has the correct number of dice.'''
         self.dice.numberOfDice = 2
         roll = self.dice.rollDice()
         result = len(roll)

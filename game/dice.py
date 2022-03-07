@@ -3,15 +3,24 @@ import random
 
 # dice class
 class Dice:
-    # initialize class
-    # numberOfDice: the number of dice in a roll, defaults to 1
-    # numberOfSides: the number of sides of a dice, defaults to 6
+    '''
+    Class that models the dice in the game.
+    '''
     def __init__(self, numberOfDice=1, numberOfSides=6):
+        '''
+        Constructor of the dice class
+        Attributes:
+        numberofDice (int): number of dice in a roll (standard value = 1).
+        numberofSides (int): number of sides of a dice (standard value = 6).
+        '''
+
         self.numberOfDice = numberOfDice
         self.numberOfSides = numberOfSides
 
-    # rolls the dice/die and returns the result
     def rollDice(self):
+        '''
+        Method rolls the dice and returns the result in a int list.
+        '''
         rolls = []
 
         for dice in range(0, self.numberOfDice):
