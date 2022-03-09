@@ -125,25 +125,25 @@ class Game:
         '''
         Method that shows the game rules.
         '''
-        self.output("Welcome to the game of PIG!")
-        print("")
-        self.output("The rules are simple,")
-        self.output("each player takes turns throwing 1 or 2 dice.")
-        self.output("A player can roll an unlimited number of times" +
-                    "in one turn.")
-        self.output("When ending a turn all roll results are " +
-                    "added to the total score.")
-        self.output("The first player reaching " +
-                    str(self.maxScore) + " wins.")
-        self.output("Some special rules:")
-        self.output("- When rolling a double, the player " +
-                    "is forced to roll again.")
-        self.output(
-            "- When rolling a 1, the player's points of that turn " +
-            "are lost.")
-        self.output("- When rolling double 1, all of the player's " +
-                    "points are lost.")
-        self.output("")
+        l1 = "\nWelcome to the game of PIG!\n"
+        l2 = "\n"
+        l3 = "The rules are simple,\n"
+        l4 = "each player takes turns throwing 1 or 2 dice.\n"
+        l5 = "A player can roll an unlimited number of times in one turn.\n"
+        l6 = "When ending a turn all roll results are "
+        l7 = "added to the total score.\n"
+        l8 = "The first player reaching 50 wins.\n"
+        l9 = "Some special rules:\n"
+        l10 = "- When rolling a double, the player is "
+        l11 = "forced to roll again.\n"
+        l12 = "- When rolling a 1, the player's points of "
+        l13 = "that turn are lost.\n"
+        l14 = "- When rolling double 1, all of the player's points are lost.\n"
+        l15 = "\n"
+
+        txt1 = l1 + l2 + l3 + l4 + l5 + l6 + l7 + l8
+        txt2 = l9 + l10 + l11 + l12 + l13 + l14 + l15
+        self.output(txt1+txt2)
 
     def showScore(self):
         '''
