@@ -1,0 +1,5 @@
+digraph "classes" {
+rankdir=BT
+charset="utf-8"
+"game.player.Player" [color="black", fontcolor="black", label="{Player|behaviourTypes : list\lname : str\lplayerType : int\lscore : int\ltotalRolls : int\l|makeDecision(number_of_rolls)\l}", shape="record", style="solid"];
+}

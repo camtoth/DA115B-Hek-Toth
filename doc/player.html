@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module player</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>player</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cannam%5Conedrive%5Cwage%20slavery%5Csustainable%20programming%5Croot%5Cpig%20game%5Cgame%5Cplayer.py">c:\users\annam\onedrive\wage slavery\sustainable programming\root\pig game\game\player.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="random.html">random</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="player.html#Player">Player</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Player">class <strong>Player</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Player">Player</a>(name='',&nbsp;playerType=0)<br>
+&nbsp;<br>
+<a href="#Player">Player</a>&nbsp;class&nbsp;that&nbsp;models&nbsp;a&nbsp;user&nbsp;in&nbsp;the&nbsp;game<br>
+Attributes:<br>
+name&nbsp;(str):&nbsp;name&nbsp;of&nbsp;player<br>
+playerType&nbsp;(int):&nbsp;type&nbsp;of&nbsp;player&nbsp;(person=0&nbsp;or&nbsp;PC=1..3)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Player-__init__"><strong>__init__</strong></a>(self, name='', playerType=0)</dt><dd><tt>constructor&nbsp;of&nbsp;player&nbsp;class<br>
+standard&nbsp;start&nbsp;attributes:<br>
+totalRolls&nbsp;(int):&nbsp;total&nbsp;rolls&nbsp;made&nbsp;in&nbsp;the&nbsp;game&nbsp;(starts&nbsp;at&nbsp;0)<br>
+score&nbsp;(int):&nbsp;the&nbsp;current&nbsp;score&nbsp;of&nbsp;the&nbsp;player&nbsp;(starts&nbsp;at&nbsp;0)<br>
+behaviourTypes&nbsp;(list):&nbsp;list&nbsp;of&nbsp;behaviourtypes&nbsp;of&nbsp;a&nbsp;PC&nbsp;player.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description,number&nbsp;of&nbsp;'y',&nbsp;number&nbsp;of&nbsp;'n']</tt></dd></dl>
+
+<dl><dt><a name="Player-makeDecision"><strong>makeDecision</strong></a>(self, number_of_rolls)</dt><dd><tt>Method&nbsp;that&nbsp;determines&nbsp;if&nbsp;a&nbsp;PC&nbsp;player&nbsp;rolls&nbsp;a&nbsp;dice&nbsp;or&nbsp;ends&nbsp;his&nbsp;turn.<br>
+A&nbsp;choice&nbsp;list&nbsp;is&nbsp;made&nbsp;containing&nbsp;'y'&nbsp;and&nbsp;'n'&nbsp;characters.<br>
+The&nbsp;starting&nbsp;number&nbsp;of&nbsp;'y'/'n'&nbsp;is&nbsp;determined&nbsp;by&nbsp;the&nbsp;behaviourType.<br>
+The&nbsp;number&nbsp;of&nbsp;'n'&nbsp;increases&nbsp;with&nbsp;each&nbsp;number&nbsp;of&nbsp;rolls&nbsp;in&nbsp;a&nbsp;turn.<br>
+The&nbsp;increase&nbsp;of&nbsp;'n'&nbsp;is&nbsp;based&nbsp;on&nbsp;the&nbsp;behaviourtype.<br>
+With&nbsp;the&nbsp;random&nbsp;module&nbsp;a&nbsp;value&nbsp;is&nbsp;selected&nbsp;from&nbsp;the&nbsp;choice&nbsp;list,<br>
+'y'&nbsp;player&nbsp;makes&nbsp;a&nbsp;roll&nbsp;or&nbsp;'n'&nbsp;player&nbsp;ends&nbsp;his&nbsp;turn.<br>
+&nbsp;<br>
+Parameters:<br>
+number_of_rolls&nbsp;(int):&nbsp;current&nbsp;number&nbsp;of&nbsp;rolls&nbsp;made&nbsp;in&nbsp;a&nbsp;turn.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

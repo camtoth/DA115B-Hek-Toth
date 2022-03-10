@@ -23,7 +23,10 @@ class Menu:
         # loads leaderboard from file
         self.leaderboard.loadLeaderboard()
         while(True):
-            # print main menu and take input
+            self.menu_options()
+            
+    def menu_options(self):
+        # print main menu and take input
             print("1 - Show rules\n2 - Start new game\n" +
                   "3 - Show leaderboard\n4 - Help\n5 - Exit")
             selection = int(input("> "))
@@ -38,7 +41,7 @@ class Menu:
                 elif selection == 3:
                     self.leaderboard.printLeaderboard()
                 elif selection == 5:
-                    break
+                    return
 
             except BaseException:
                 pass
