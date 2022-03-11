@@ -24,13 +24,12 @@ class Menu:
         self.leaderboard.loadLeaderboard()
         while(True):
             self.menu_options()
-            
+
     def menu_options(self):
         # print main menu and take input
             print("1 - Show rules\n2 - Start new game\n" +
                   "3 - Show leaderboard\n4 - Help\n5 - Exit")
             selection = int(input("> "))
-            print(selection)
 
             try:
                 if selection == 1:
