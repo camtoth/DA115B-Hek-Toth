@@ -23,15 +23,12 @@ class Menu:
         # loads leaderboard from file
         self.leaderboard.loadLeaderboard()
         while(True):
-            self.menu_options()
-
-    def menu_options(self):
-        # print main menu and take input
+            # print main menu and take input
             print("1 - Show rules\n2 - Start new game\n" +
                   "3 - Show leaderboard\n4 - Help\n5 - Exit")
-            selection = int(input("> "))
 
             try:
+                selection = int(input("> "))
                 if selection == 1:
                     self.new_game.showRules()
 
@@ -39,8 +36,10 @@ class Menu:
                     self.submenuloop()
                 elif selection == 3:
                     self.leaderboard.printLeaderboard()
+                elif selection == 4:
+                    print("Type 'end' during the game  to win!")
                 elif selection == 5:
-                    return
+                    break
 
             except BaseException:
                 pass
@@ -60,7 +59,7 @@ class Menu:
             while(subselection == 1):
                 print("Input 1 to rename " +
                       self.new_game.players[0].name +
-                      "or 2 to rename " +
+                      " or 2 to rename " +
                       self.new_game.players[1].name)
 
                 try:
