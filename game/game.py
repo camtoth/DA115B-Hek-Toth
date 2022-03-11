@@ -14,7 +14,7 @@ class Game:
     # turn: current turn number
     # active: boolean if game is active or not
     def __init__(self, leaderboard, players=[], maxPlayers=2,
-                 gameSpeed=1, maxScore=50):
+                 gameSpeed=1, maxScore=100):
         '''
         Constructor of game class
         Attributes:
@@ -52,23 +52,23 @@ class Game:
         Method to choose the rules set.
         '''
         self.output("CHOOSE RULES")
-        self.output("1: 1 dice", 0)
+        self.output("1: 1 die", 0)
         self.output("2: 2 dice", 0)
 
         choice = 0
         while choice == 0:
             try:
-                choice = int(input("Your choice:"))
+                choice = int(input("Your choice: "))
                 if choice == 1:
                     self.dice = dice.Dice()
+                    self.output("Great, let's play a game with 1 die!")
                 elif choice == 2:
                     self.dice = dice.Dice(2, 6)
+                    self.output("Great, let's play a game with 2 dice!")
                 else:
                     choice = 0
             except BaseException:
                 pass
-
-        self.output("Great, let's play a game with " + str(choice) + " dice!")
 
     def choosePlayers(self):
         '''
@@ -132,7 +132,7 @@ class Game:
         l5 = "A player can roll an unlimited number of times in one turn.\n"
         l6 = "When ending a turn all roll results are "
         l7 = "added to the total score.\n"
-        l8 = "The first player reaching 50 wins.\n"
+        l8 = "The first player reaching 100 wins.\n"
         l9 = "Some special rules:\n"
         l10 = "- When rolling a double, the player is "
         l11 = "forced to roll again.\n"
